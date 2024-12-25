@@ -1,25 +1,28 @@
 import express from "express";
+const app = express();
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import nodemailer from "nodemailer";
 import crypto from "crypto";
-import userRoute from "./route/userRoute.js"; // Importing the user routes
+import userRoute from "./route/user.route.js"; // Importing the user routes
 
+app.use(cors());
 dotenv.config();
 
-const app = express();
-
-app.use(cors({
-  origin: "http://localhost:3000", // Replace with your frontend's URL
-  methods: ["GET", "POST"],
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: "http://localhost:3000", // Replace with your frontend's URL
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
-const PORT = process.env.PORT || 4000;
-const URI = "mongodb+srv://echovote:ayusharyan@cluster0.k81n1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-
+const PORT = process.env.PORT || 4001;
+const URI =
+  process.env.URI ||
+  "mongodb+srv://echovote:ayusharyan@cluster0.k81n1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 // Connect to MongoDB
 mongoose
@@ -71,7 +74,9 @@ app.post("/api/verify-otp", (req, res) => {
   const record = otpStore[email];
 
   if (!record) {
-    return res.status(400).json({ message: "No OTP requested for this email." });
+    return res
+      .status(400)
+      .json({ message: "No OTP requested for this email." });
   }
 
   if (record.expires < Date.now()) {
