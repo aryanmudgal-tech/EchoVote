@@ -6,20 +6,20 @@ import cors from "cors";
 import nodemailer from "nodemailer";
 import crypto from "crypto";
 import userRoute from "./route/user.route.js"; // Importing the user routes
-
+import postRoute from "./route/post.route.js";
 app.use(cors());
 dotenv.config();
 
 app.use(
   cors({
-    origin: "http://localhost:3000", // Replace with your frontend's URL
+    origin: "http://localhost:3000", //frontend's URL
     methods: ["GET", "POST"],
     credentials: true,
   })
 );
 app.use(express.json());
 
-const PORT = process.env.PORT || 4001;
+const PORT = process.env.PORT || 4000;
 const URI =
   process.env.URI ||
   "mongodb+srv://echovote:ayusharyan@cluster0.k81n1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
@@ -94,6 +94,7 @@ app.post("/api/verify-otp", (req, res) => {
 
 // Use User Routes
 app.use("/user", userRoute);
+app.use("/posts", postRoute);
 
 app.listen(PORT, () => {
   console.log(`EchoVote listening on port ${PORT}`);
