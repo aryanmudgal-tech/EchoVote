@@ -13,9 +13,9 @@ function Logout() {
       });
       localStorage.removeItem("Users");
       window.location.reload();
-      toast.success("Log out successfully");
+      toast.success("Logged out successfully.");
     } catch (error) {
-      toast.error("Error : ", error.message);
+      toast.error("Error: " + error.message);
     }
   };
 

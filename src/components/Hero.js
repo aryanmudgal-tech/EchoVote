@@ -2,8 +2,10 @@ import React from "react";
 import logo from "../images/logo.webp";
 import Login from "./Login";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthProvider";
 
 function Hero() {
+  const [authUser] = useAuth();
   return (
     <>
       <div className="container col-xxl-8 px-4 py-5">
@@ -29,23 +31,29 @@ function Hero() {
               your issues, vote on others, and help us focus on the topics that
               impact our community the most.
             </p>
-            <div className="d-grid gap-2 d-md-flex justify-content-md-start">
-              <Link
-                type="button"
-                to="/signup"
-                className="btn btn-primary btn-lg px-4 me-md-2"
-              >
-                Sign Up
+            {authUser ? (
+              <Link type="button" class="btn btn-success" to="/create-post">
+                Create Post
               </Link>
-              <button
-                type="button"
-                className="btn btn-outline-secondary btn-lg px-4"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-              >
-                Log In
-              </button>
-            </div>
+            ) : (
+              <div className="d-grid gap-2 d-md-flex justify-content-md-start">
+                <Link
+                  type="button"
+                  to="/signup"
+                  className="btn btn-primary btn-lg px-4 me-md-2"
+                >
+                  Sign Up
+                </Link>
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-lg px-4"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                >
+                  Log In
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
