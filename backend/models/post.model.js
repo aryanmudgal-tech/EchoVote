@@ -11,14 +11,23 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    tags: [{
+    tags: [
+      {
+        type: String,
+      },
+    ],
+    author: {
       type: String,
       required: true,
-    }],
-    author: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+    },
+    likes: {
+      type: Number,
       required: true,
+      default: 0,
+      validate: {
+        validator: Number.isInteger,
+        message: "{VALUE} is not an integer value",
+      },
     },
   },
   { timestamps: true }

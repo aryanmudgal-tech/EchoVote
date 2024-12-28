@@ -1,15 +1,20 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Login from "./Login";
 
 function Signup() {
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState("");
@@ -26,7 +31,9 @@ function Signup() {
     setEmail(userEmail);
     setLoading(true);
     try {
-      await axios.post("http://localhost:4000/api/send-otp", { email: userEmail });
+      await axios.post("http://localhost:4000/api/send-otp", {
+        email: userEmail,
+      });
       setStep(2);
       setMessage("OTP sent to your email.");
       toast.success("OTP sent to your email.");
@@ -68,7 +75,10 @@ function Signup() {
     };
 
     try {
-      const res = await axios.post("http://localhost:4000/user/signup", userInfo);
+      const res = await axios.post(
+        "http://localhost:4000/user/signup",
+        userInfo
+      );
       if (res.data) {
         toast.success("Sign up successful!");
         localStorage.setItem("Users", JSON.stringify(res.data.user));
@@ -114,6 +124,16 @@ function Signup() {
               <button type="submit" className="btn btn-primary w-100">
                 Send OTP
               </button>
+              <p className="mt-3">
+                Have account?{" "}
+                <Link
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  to="/"
+                >
+                  Log in
+                </Link>
+              </p>
             </form>
           )}
 
@@ -182,6 +202,7 @@ function Signup() {
           {message && <div className="mt-3 text-center">{message}</div>}
         </div>
       )}
+      <Login />
     </div>
   );
 }
