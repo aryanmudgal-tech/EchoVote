@@ -1,11 +1,41 @@
-import mongoose from "mongoose";
+import { DataTypes } from "sequelize";
+import sequelize from "../config/database.js";
 
-const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+const User = sequelize.define("User", {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      isEmail: true,
+      isBuffaloEmail(value) {
+        if (!value.endsWith('buffalo.edu')) {
+          throw new Error('Email must be a buffalo.edu address');
+        }
+      }
+    }
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  otp: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  otpExpiresAt: {
+    type: DataTypes.DATE,
+    allowNull: true
+  },
+  isVerified: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false
+  }
 });
-
-const User = mongoose.model("User", userSchema);
 
 export default User;

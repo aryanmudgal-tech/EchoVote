@@ -44,27 +44,22 @@ function Navbar() {
                 </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/create-post">
+                <Link className="nav-link" to="/create-post">
                   Create Post
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <Link className="nav-link" to="/profile">
                   Profile
-                </a>
+                </Link>
               </li>
             </ul>
             {authUser ? (
               <Logout />
             ) : (
-              <button
-                type="button "
-                className="btn btn-success m-2"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-              >
+              <Link to="/login" className="btn btn-success m-2">
                 Login
-              </button>
+              </Link>
             )}
           </div>
         </div>

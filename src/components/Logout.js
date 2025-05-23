@@ -1,34 +1,22 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
 import toast from "react-hot-toast";
 
 function Logout() {
-  const [authUser, setAuthUser] = useAuth();
+  const navigate = useNavigate();
+  const [authUser, updateAuthUser] = useAuth();
 
   const handleLogout = () => {
-    try {
-      setAuthUser({
-        ...authUser,
-        user: null,
-      });
-      localStorage.removeItem("Users");
-      window.location.reload();
-      toast.success("Logged out successfully.");
-    } catch (error) {
-      toast.error("Error: " + error.message);
-    }
+    updateAuthUser(null);
+    toast.success("Logged out successfully!");
+    navigate("/login");
   };
 
   return (
-    <div>
-      <button
-        onClick={handleLogout}
-        type="button"
-        className="btn m-2 btn-danger"
-      >
-        Log out
-      </button>
-    </div>
+    <button onClick={handleLogout} className="btn btn-danger m-2">
+      Logout
+    </button>
   );
 }
 

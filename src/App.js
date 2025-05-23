@@ -7,12 +7,15 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Navigate,
 } from "react-router-dom";
 import Signup from "./components/Signup";
+import Login from "./components/Login";
+import Profile from "./components/Profile";
 import { Toaster } from "react-hot-toast";
 import AuthProvider, { useAuth } from "./context/AuthProvider";
 import CreatePost from "./components/CreatePost";
+import ProtectedRoute from "./components/ProtectedRoute";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function App() {
   return (
@@ -31,11 +34,22 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/about" element={<About />} />
         <Route
           path="/create-post"
           element={
-            <ProtectedRoute component={CreatePost} authUser={authUser} />
+            <ProtectedRoute>
+              <CreatePost />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
           }
         />
       </Routes>
@@ -43,10 +57,6 @@ function AppContent() {
       <Toaster />
     </Router>
   );
-}
-
-function ProtectedRoute({ component: Component, authUser }) {
-  return authUser ? <Component /> : <Navigate to="/signup" replace />;
 }
 
 export default App;

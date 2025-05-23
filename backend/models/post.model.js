@@ -1,38 +1,39 @@
-import mongoose from "mongoose";
+import { DataTypes } from "sequelize";
+import sequelize from "../config/database.js";
+import User from "./user.model.js";
 
-const postSchema = new mongoose.Schema(
-  {
-    title: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    content: {
-      type: String,
-      required: true,
-    },
-    tags: [
-      {
-        type: String,
-      },
-    ],
-    author: {
-      type: String,
-      required: true,
-    },
-    likes: {
-      type: Number,
-      required: true,
-      default: 0,
-      validate: {
-        validator: Number.isInteger,
-        message: "{VALUE} is not an integer value",
-      },
-    },
+const Post = sequelize.define("Post", {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
   },
-  { timestamps: true }
-);
+  title: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  content: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
+  likes: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: User,
+      key: 'id'
+    }
+  }
+}, {
+  tableName: 'problems' // This will create the table with name 'problems'
+});
 
-const Post = mongoose.model("Post", postSchema);
+// Define the relationship
+Post.belongsTo(User, { foreignKey: 'userId', as: 'author' });
+User.hasMany(Post, { foreignKey: 'userId' });
 
 export default Post;

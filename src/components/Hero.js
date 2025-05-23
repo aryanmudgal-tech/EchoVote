@@ -1,6 +1,5 @@
 import React from "react";
 import logo from "../images/logo.webp";
-import Login from "./Login";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
 
@@ -32,7 +31,7 @@ function Hero() {
               impact our community the most.
             </p>
             {authUser ? (
-              <Link type="button" class="btn btn-success" to="/create-post">
+              <Link type="button" className="btn btn-success" to="/create-post">
                 Create Post
               </Link>
             ) : (
@@ -44,20 +43,18 @@ function Hero() {
                 >
                   Sign Up
                 </Link>
-                <button
+                <Link
                   type="button"
+                  to="/login"
                   className="btn btn-outline-secondary btn-lg px-4"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
                 >
                   Log In
-                </button>
+                </Link>
               </div>
             )}
           </div>
         </div>
       </div>
-      <Login />
     </>
   );
 }

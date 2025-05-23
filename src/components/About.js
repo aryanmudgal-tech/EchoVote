@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../images/logo.webp";
 import ayushImg from "../images/ayushImg.png";
+import aryanImg from "../images/aryanProf.png";
 
 function About() {
   return (
@@ -86,35 +87,27 @@ function About() {
               <img src={ayushImg} className="card-img-top" alt="..." />
               <div className="card-body">
                 <h5 className="card-title">Ayush Srivastava</h5>
-                <p className="card-text">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Officiis repellendus perferendis incidunt aperiam repellat
-                  sunt quibusdam dicta, repudiandae laudantium est!
-                </p>
+          
                 <a
-                  href="https://m-portfolio-green.vercel.app"
+                  href="https://github.com/axxyush"
                   className="btn btn-primary"
                 >
-                  View Portfolio
+                  View Github
                 </a>
               </div>
             </div>
           </div>
           <div className="feature col">
             <div className="card" style={{ width: "18rem" }}>
-              <img src={ayushImg} className="card-img-top" alt="..." />
+              <img src={aryanImg} className="card-img-top" alt="..." />
               <div className="card-body">
                 <h5 className="card-title">Aryan Mudgal</h5>
-                <p className="card-text">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Dolorum placeat, modi qui fuga aut saepe nisi eaque voluptate
-                  omnis adipisci.
-                </p>
+                
                 <a
-                  href="https://m-portfolio-green.vercel.app"
+                  href="https://github.com/aryanmudgal-tech"
                   className="btn btn-primary"
                 >
-                  View Portfolio
+                  View Github
                 </a>
               </div>
             </div>
