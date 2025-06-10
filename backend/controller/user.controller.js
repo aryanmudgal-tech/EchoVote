@@ -45,10 +45,10 @@ export const signup = async (req, res) => {
     await transporter.sendMail({
       to: email,
       subject: 'Your EchoVote OTP Code',
-      text: `Your OTP is: ${otp}`
+      text: `Thank you for signing up for EchoVote! Your OTP is: ${otp}`
     });
 
-    res.status(201).json({ message: "OTP sent to your email. Please verify to complete registration." });
+    res.status(201).json({ message: "OTP sent to your email. Please check spam and verify to complete registration." });
   } catch (error) {
     console.error("Error:", error.message);
     res.status(500).json({ message: error.message || "Internal server error" });

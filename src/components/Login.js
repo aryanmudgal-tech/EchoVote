@@ -34,7 +34,7 @@ function Login() {
 
     try {
       console.log('Attempting login with:', formData);
-      const response = await axios.post('http://localhost:4000/user/login', formData);
+      const response = await axios.post('https://echovote-backend-12678945690.us-central1.run.app/user/login', formData);
       console.log('Login response:', response.data);
 
       if (response.data && response.data.user && response.data.user.token) {

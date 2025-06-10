@@ -5,10 +5,10 @@ import cors from "cors";
 import userRoutes from "./routes/user.routes.js";
 import postRoutes from "./routes/post.routes.js";
 import replyRoutes from "./routes/reply.routes.js";
-import sequelize from "./config/database.js";
+import sequelize from "./utils/database.js";
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 app.use(cors());
 app.use(express.json());
