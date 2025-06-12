@@ -20,7 +20,7 @@ function Profile() {
 
     const fetchUserPosts = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/posts/user", {
+        const response = await axios.get("https://echovote-backend.onrender.com/posts/user", {
           headers: {
             'Authorization': `Bearer ${authUser.token}`
           }
@@ -42,7 +42,7 @@ function Profile() {
     if (!window.confirm("Are you sure you want to delete this post? This cannot be undone.")) return;
     setDeleting(postId);
     try {
-      await axios.delete(`http://localhost:4000/posts/${postId}`, {
+      await axios.delete(`https://echovote-backend.onrender.com/posts/${postId}`, {
         headers: { Authorization: `Bearer ${authUser.token}` }
       });
       setPosts(posts.filter(post => post.id !== postId));

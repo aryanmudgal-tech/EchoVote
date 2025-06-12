@@ -21,7 +21,7 @@ function Signup() {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:4000/user/signup", formData);
+      const response = await axios.post("https://echovote-backend.onrender.com/user/signup", formData);
       toast.success(response.data.message || "OTP sent to your email. Please check you junk folder if you don't see it in your inbox.");
       setShowOTP(true);
       setEmailForOTP(formData.email);
@@ -36,7 +36,7 @@ function Signup() {
     e.preventDefault();
     setVerifying(true);
     try {
-      const response = await axios.post("http://localhost:4000/user/verify", {
+      const response = await axios.post("https://echovote-backend.onrender.com/user/verify", {
         email: emailForOTP,
         otp
       });
