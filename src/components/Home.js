@@ -22,7 +22,7 @@ function Home() {
         Authorization: `Bearer ${authUser.token}`
       } : {};
 
-      const response = await axios.get('https://echovote-backend-12678945690.us-central1.run.app/posts', { headers });
+      const response = await axios.get('http://localhost:4000/posts', { headers });
       setPosts(response.data);
     } catch (error) {
       console.error('Error fetching posts:', error);

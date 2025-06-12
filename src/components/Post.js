@@ -11,7 +11,7 @@ function Post() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get("https://echovote-backend-12678945690.us-central1.run.app/posts/all");
+        const response = await axios.get("http://localhost:4000/posts/all");
         console.log('Fetched posts:', response.data);
         setPosts(response.data);
       } catch (error) {
@@ -40,7 +40,7 @@ function Post() {
       );
 
       // Send the like request to the backend
-      await axios.post(`https://echovote-backend-12678945690.us-central1.run.app/posts/${postId}/like`, {}, {
+      await axios.post(`http://localhost:4000/posts/${postId}/like`, {}, {
         headers: {
           'Authorization': `Bearer ${authUser.token}`
         }
