@@ -52,7 +52,7 @@ function CreatePost() {
         'Content-Type': 'application/json'
       });
 
-      const response = await axios.post('https://echovote-backend.onrender.com/posts/create', formData, {
+      const response = await axios.post('https://echovote-1.onrender.com/posts/create', formData, {
         headers: {
           'Authorization': `Bearer ${userData.token}`,
           'Content-Type': 'application/json'

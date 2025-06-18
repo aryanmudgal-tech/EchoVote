@@ -19,7 +19,7 @@ function PostCard({ post, onLikeUpdate }) {
   const fetchReplies = async () => {
     setLoadingReplies(true);
     try {
-      const res = await axios.get(`https://echovote-backend.onrender.com/posts/${post.id}/replies`);
+      const res = await axios.get(`https://echovote-1.onrender.com/posts/${post.id}/replies`);
       setReplies(res.data);
     } catch (error) {
       setReplies([]);
@@ -38,7 +38,7 @@ function PostCard({ post, onLikeUpdate }) {
     setSubmitting(true);
     try {
       await axios.post(
-        `https://echovote-backend.onrender.com/posts/${post.id}/replies`,
+        `https://echovote-1.onrender.com/posts/${post.id}/replies`,
         { content: replyContent },
         { headers: { Authorization: `Bearer ${authUser.token}` } }
       );
@@ -58,7 +58,7 @@ function PostCard({ post, onLikeUpdate }) {
     }
     try {
       const response = await axios.post(
-        `https://echovote-backend.onrender.com/posts/${post.id}/like`,
+        `https://echovote-1.onrender.com/posts/${post.id}/like`,
         {},
         { headers: { Authorization: `Bearer ${authUser.token}` } }
       );
